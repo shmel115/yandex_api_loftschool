@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+}
+
+.modal {
+    // position: fixed;
+    // top: 10px;
+    // left: 10px;
+    z-index: 999;
+    background: #ffffff;
+    width: 380px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    &__close {
+        content: "";
+        width: 14px;
+        height: 14px;
+        position: absolute;
+        right: 12px;
+        top: 14px;
+        background: url(./images/icon_close.png) no-repeat;
+    }
+
+    &__title {
+        font-size: 16px;
+        line-height: 16px;
+        text-transform: uppercase;
+        color: #ff8663;
+        margin-bottom: 15px;
+    }
+
+    &__header {
+        padding: 15px;
+        padding-left: 30px;
+        padding-right: 40px;
+        color: #ffffff;
+        background: #ff8663;
+        position: relative;
+        font-size: 12px;
+        line-height: 14px;
+        min-height: 44px;
+
+        &::before {
+            content: "";
+            width: 8px;
+            height: 14px;
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            background: url(./images/icon_1.png) no-repeat;
+        }
+    }
+
+    &__inner {
+        padding: 15px;
+    }
+
+    &__input {
+        width: 100%;
+        border: 1px solid #c4c4c4;
+        border-radius: 15px;
+        padding: 5px 15px;
+        color: #9f9f9f;
+        font-size: 15px;
+        line-height: 22px;
+        margin-bottom: 15px;
+        outline: none;
+    }
+
+    &__textarea {
+        font-size: 15px;
+        line-height: 22px;
+        width: 100%;
+        border: 1px solid #c4c4c4;
+        border-radius: 15px;
+        padding: 5px 15px;
+        color: #9f9f9f;
+        resize: none;
+        height: 130px;
+        outline: none;
+        margin-bottom: 15px;
+    }
+
+    &__submit {
+        font-size: 12px;
+        line-height: 12px;
+        color: #ffffff;
+        text-align: center;
+        padding: 9px 15px;
+        background: #ff8663;
+        cursor: pointer;
+        display: inline-block;
+        border: 0;
+        border-radius: 10px;
+        outline: none;
+
+        &-wrapper {
+            text-align: right;
+        }
+    }
+
+
+}
