@@ -20,8 +20,7 @@ module.exports = class {
     };
   }
   async createBalloon(tmp) {
-    console.log(tmp);
-
+    const clusterNem = this.cluster;
     var BalloonContentLayout = await ymaps.templateLayoutFactory.createClass(
       '<div class="form">' +
         '<div class="header">' +
@@ -51,7 +50,7 @@ module.exports = class {
             const message = document.getElementById("message").value;
             const body = document.querySelector(".body");
             const div = document.createElement("div");
-            div.innerHTML = `<div id="review"><b>${name}</b> <span>${point}</span><span class="data">${d.getDate()}.${d.getMonth()}.${d.getFullYear()} ${d.getHours()}.${d.getMinutes()}</span><p>${message}</p></div>`;
+            //div.innerHTML = `<div id="review"><b>${name}</b> <span>${point}</span><span class="data">${d.getDate()}.${d.getMonth()}.${d.getFullYear()} ${d.getHours()}.${d.getMinutes()}</span><p>${message}</p></div>`;
             body.appendChild(div);
             that.onContent(name, point, message);
           });
@@ -64,18 +63,12 @@ module.exports = class {
         },
 
         onContent: function(name, point, message) {
-          objMap[count++] = {
-            coords: coords,
-            name: name,
-            date: d.toString(),
-            message: `<div id="review"><b>${name}</b> <span>${point}</span><span class="data">${d.getDate()}.${d.getMonth()}.${d.getFullYear()} ${d.getHours()}.${d.getMinutes()}</span><p>${message}</p></div>`
-          };
           var myPlacemark = new ymaps.Placemark(
-            coords,
+            tmp,
             {
-              balloonContentHeader: `<b>${point}</b>`,
-              balloonContentBody: `<div id="review"><a class="linckCoords" href="javascript:void(0);" data-coords="${coords}">${points}</a> <p>${message}</p></div>`,
-              balloonContentFooter: `${d.getDate()}.${d.getMonth()}.${d.getFullYear()} ${d.getHours()}.${d.getMinutes()}`
+              balloonContentHeader: `<b>${point}</b>`
+              // balloonContentBody: `<div id="review"><a class="linckCoords" href="javascript:void(0);" data-coords="${coords}">${points}</a> <p>${message}</p></div>`
+              // balloonContentFooter: `${d.getDate()}.${d.getMonth()}.${d.getFullYear()} ${d.getHours()}.${d.getMinutes()}`
             },
             {
               balloonContentBodyLayout: BalloonContentLayout,
@@ -83,9 +76,8 @@ module.exports = class {
               hasBalloon: false
             }
           );
-          console.log(tmp);
 
-          this.cluster.add(myPlacemark);
+          clusterNem.add(myPlacemark);
 
           return [myPlacemark, this.cluster];
         }
@@ -97,5 +89,4 @@ module.exports = class {
     await balloon.options.setParent(this.map.options);
     await balloon.open(tmp);
   }
-  createPlacemark(pos, html) {}
 };
